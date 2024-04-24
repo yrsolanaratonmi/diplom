@@ -1,0 +1,11 @@
+<div class="head">
+  <a routerLink="" class="container">
+    <span class="title">Notes</span>
+    <tui-svg src="tuiIconAlignJustifyLarge">
+
+    </tui-svg>
+  </a>
+
+  <tui-svg src="tuiIconSunLarge" *ngIf="darkMode" (click)="changeMode()" class="mode"></tui-svg>
+  <tui-svg src="tuiIconMoonLarge" *ngIf="!darkMode" (click)="changeMode()" class="mode"></tui-svg>
+</div>
