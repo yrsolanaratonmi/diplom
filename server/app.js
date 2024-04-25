@@ -12,7 +12,9 @@ app.use(bodyParser.json({ limit: '50mb' }));
 app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
 
 
-mongoose.connect(process.env.URI_TODO, {useNewURLParser: true, useUnifiedTopology: true})
+mongoose.createConnection(process.env.URI_TODO, {useNewURLParser: true, useUnifiedTopology: true})
+mongoose.connect(process.env.URI_AUTH, {useNewURLParser: true, useUnifiedTopology: true})
+
 
 app.listen(process.env.PORT, () => {
   console.log('app started')
