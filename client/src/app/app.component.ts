@@ -1,22 +1,26 @@
 import { Component } from '@angular/core';
-import {Router} from '@angular/router';
-import {Select} from '@ngxs/store';
-import {DarkModeState} from './store/darkMode.state';
-import {Observable} from 'rxjs';
+import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { NotesService } from './notes.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
   title = 'notes';
 
-  constructor(private readonly router: Router) {}
+  constructor(
+    private readonly router: Router,
+    private notesService: NotesService
+  ) {}
 
-  @Select(DarkModeState) darkMode!: Observable<boolean>;
+  ngOnInit(): void {
+    this.notesService.getNotes();
+  }
 
   addNote() {
-    this.router.navigate(['/new'])
+    this.router.navigate(['/new']);
   }
 }

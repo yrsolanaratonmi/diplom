@@ -12,12 +12,10 @@ module.exports.getAllTasks = (req, res) => {
 
 module.exports.createNewTask = (req, res) => {
   try {
-
-    console.log(req.body, req.query)
     if (
-        req.body.text &&
-        typeof req.body.text === 'string') {
-      const task = new Task({text: req.body.text})
+        req.body.title &&
+        typeof req.body.title === 'string') {
+      const task = new Task({title: req.body.title, description: req.body.description, created: req.body.created})
       task.save()
           .then(result => res.send(result))
     } else res.status(400).send('uncorrected data')
@@ -29,10 +27,10 @@ module.exports.createNewTask = (req, res) => {
 
 module.exports.changeTaskInfo = (req, res) => {
   try {
-    if (typeof req.body.isCheck === 'boolean' &&
-        req.body.text &&
-        typeof req.body.text === 'string') {
-      Task.findByIdAndUpdate(req.body.id, {text: req.body.text, isCheck: req.body.isCheck})
+    if (
+        req.body.title &&
+        typeof req.body.title === 'string') {
+      Task.findByIdAndUpdate(req.body._id, {title: req.body.title, description: req.body.description, created: req.body.created})
           .then(result => res.send(result))
     } else res.status(400).send('uncorrected data')
   } catch (error) {
@@ -44,7 +42,7 @@ module.exports.changeTaskInfo = (req, res) => {
 
 module.exports.deleteTask = (req, res) => {
   try {
-    Task.findByIdAndDelete({_id: req.query.id})
+    Task.findByIdAndDelete({_id: req.query._id})
         .then(result => res.send(result))
   } catch (error) {
     res.status(500).send(`error : ${error}`)

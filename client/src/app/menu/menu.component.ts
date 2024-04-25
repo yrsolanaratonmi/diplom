@@ -1,8 +1,7 @@
-import { Select, Store } from '@ngxs/store';
 import { Component } from '@angular/core';
-import {Note, NotesState} from '../store/notes.state';
-import {Observable} from 'rxjs';
-import {Router} from '@angular/router';
+import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
+import { Note, NotesService } from '../notes.service';
 
 @Component({
   selector: 'app-menu',
@@ -10,15 +9,25 @@ import {Router} from '@angular/router';
   styleUrls: ['./menu.component.scss'],
 })
 export class MenuComponent {
-  constructor (private readonly router: Router) {}
+  constructor(
+    private readonly router: Router,
+    private readonly notesService: NotesService
+  ) {}
 
-  @Select(NotesState) notes$!: Observable<Array<Note>>;
+  notes$: Observable<Array<Note>> = this.notesService.notes$;
 
+  ngOnInit(): void {
+    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
+    //Add 'implements OnInit' to the class.
+    this.notesService
+      .getNotes()
+      .subscribe((res) => this.notesService.notes$.next(res));
+  }
 
-  redirectToEdit(noteId: number, event: Event) {
-    event.preventDefault()
-    event.stopPropagation()
-    const params = {openModal: 'true'}
-    this.router.navigate([noteId], {queryParams: params})
+  redirectToEdit(noteId: string, event: Event) {
+    event.preventDefault();
+    event.stopPropagation();
+    const params = { openModal: 'true' };
+    this.router.navigate([noteId], { queryParams: params });
   }
 }

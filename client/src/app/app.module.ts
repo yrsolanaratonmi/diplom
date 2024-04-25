@@ -29,13 +29,8 @@ import {
 import { TuiLetModule } from '@taiga-ui/cdk';
 import { NoteNewComponent } from './note-new/note-new.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { NgxsModule } from '@ngxs/store';
-import { NotesState } from './store/notes.state';
-import { NgxsStoragePluginModule } from '@ngxs/storage-plugin';
 import { NoteEditComponent } from './note-edit/note-edit.component';
-import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
-import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
-import { DarkModeState } from './store/darkMode.state';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -47,6 +42,7 @@ import { DarkModeState } from './store/darkMode.state';
     NoteEditComponent,
   ],
   imports: [
+    HttpClientModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
@@ -68,12 +64,6 @@ import { DarkModeState } from './store/darkMode.state';
     TuiThemeNightModule,
     TuiMarkerIconModule,
     TuiTagModule,
-    NgxsModule.forRoot([NotesState, DarkModeState]),
-    NgxsStoragePluginModule.forRoot({
-      key: [NotesState, DarkModeState],
-    }),
-    NgxsLoggerPluginModule.forRoot(),
-    NgxsReduxDevtoolsPluginModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent],

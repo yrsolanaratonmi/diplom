@@ -1,21 +1,31 @@
-  <tui-island *tuiLet="note$ | async as note" [textAlign]="'center'">
-    <h3 class="tui-island__title">{{note?.title}}</h3>
-    <p class="tui-island__paragraph">
-      {{note?.description}}
-    </p>
+<tui-island *tuiLet="note$ | async as note" [textAlign]="'center'">
+  <h3 class="tui-island__title">{{ note?.title }}</h3>
+  <p class="tui-island__paragraph">
+    {{ note?.description }}
+  </p>
 
-    <p class="tui-island__paragraph">
-      {{note?.created | date : 'medium'}}
-    </p>
+  <p class="tui-island__paragraph">
+    {{ note?.created | date : "medium" }}
+  </p>
 
-      <img *ngIf="note?.file" [src]="note?.file" class="file" />
-
-    <div class="actions">
-      <button appearance="secondary-destructive" size="m" tuiButton type="button" class="tui-island__footer-button" icon="tuiIconTrash"
-        (click)="remove(note?.id)">
-      </button>
-      <button appearance="secondary" size="m" tuiButton type="button" class="tui-island__footer-button" icon="tuiIconEdit"
-        (click)="edit(note!)">
-      </button>
-    </div>
-  </tui-island>
+  <div class="actions">
+    <button
+      appearance="secondary-destructive"
+      size="m"
+      tuiButton
+      type="button"
+      class="tui-island__footer-button"
+      icon="tuiIconTrash"
+      (click)="remove(note?._id)"
+    ></button>
+    <button
+      appearance="secondary"
+      size="m"
+      tuiButton
+      type="button"
+      class="tui-island__footer-button"
+      icon="tuiIconEdit"
+      (click)="edit(note!)"
+    ></button>
+  </div>
+</tui-island>
