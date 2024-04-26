@@ -12,8 +12,8 @@ export const isNoteExistsGuard: CanActivateFn = (route) => {
   return notesService.getNotes().pipe(
     switchMap((notes) => {
       const note = notes.find((el: any) => el._id === id);
-      return of(!!note); // Convert to Observable<boolean>
+      return of(!!note);
     }),
-    catchError(() => of(false)) // Handle error case
+    catchError(() => of(false))
   );
 };
