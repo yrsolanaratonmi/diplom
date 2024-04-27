@@ -1,5 +1,8 @@
 const express = require('express')
-const router = express.Router()
+const router = express.Router();
+const authMiddleware = require('../../middlewares/authMiddleware')
+const roleMiddleware = require('../../middlewares/roleMiddleware')
+
 
 
 const {
@@ -11,13 +14,15 @@ const {
 
 const {
   register,
-  login
+  login,
+  getUsers
 } = require('../controllers/auth.controller')
 
 router.post('/register', register)
 router.post('/login', login)
-router.get('/allTasks', getAllTasks)
-router.post('/task', createNewTask)
-router.patch('/task', changeTaskInfo)
-router.delete('/task', deleteTask)
+router.get('/allUsers', authMiddleware, roleMiddleware(['admin']), getUsers)
+router.get('/allTasks', authMiddleware, getAllTasks)
+router.post('/task', authMiddleware, createNewTask)
+router.patch('/task', authMiddleware, changeTaskInfo)
+router.delete('/task', authMiddleware, deleteTask)
 module.exports = router
