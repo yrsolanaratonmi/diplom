@@ -4,6 +4,25 @@
     <tui-svg src="tuiIconAlignJustifyLarge"> </tui-svg>
   </a>
 
-  <!-- <tui-svg src="tuiIconSunLarge" *ngIf="darkMode" (click)="changeMode()" class="mode"></tui-svg>
-  <tui-svg src="tuiIconMoonLarge" *ngIf="!darkMode" (click)="changeMode()" class="mode"></tui-svg> -->
+  <tui-svg
+    src="tuiIconSunLarge"
+    *ngIf="darkMode | async"
+    (click)="changeMode()"
+    class="mode"
+  ></tui-svg>
+  <tui-svg
+    src="tuiIconMoonLarge"
+    *ngIf="!(darkMode | async)"
+    (click)="changeMode()"
+    class="mode"
+  ></tui-svg>
+
+  <div class="options">
+    <button tuiButton class="login-btn" (click)="openLoginForm()">login</button>
+    <tui-svg
+      src="tuiIconLogOutLarge"
+      (click)="logout()"
+      style="cursor: pointer"
+    ></tui-svg>
+  </div>
 </div>

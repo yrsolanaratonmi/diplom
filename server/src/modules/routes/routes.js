@@ -15,11 +15,13 @@ const {
 const {
   register,
   login,
-  getUsers
+  getUsers,
+  logOut
 } = require('../controllers/auth.controller')
 
 router.post('/register', register)
-router.post('/login', login)
+router.post('/login', login);
+router.post('/logout', logOut)
 router.get('/allUsers', authMiddleware, roleMiddleware(['admin']), getUsers)
 router.get('/allTasks', authMiddleware, getAllTasks)
 router.post('/task', authMiddleware, createNewTask)

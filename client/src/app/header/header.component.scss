@@ -27,4 +27,14 @@
   .mode {
     cursor: pointer;
   }
+
+  .login-btn {
+    height: 40px;
+  }
+}
+
+.options {
+  display: flex;
+  gap: 20px;
+  align-items: center;
 }

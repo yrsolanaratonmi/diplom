@@ -31,12 +31,17 @@ module.exports.login = async (req, res) => {
   if (!isValidPassword) return res.status(400).send({ message: `password is not correct` });
 
   const token = generateAccessToken(user._id, user.roles);
-  return res.send({ token })
+  return res.send({ token: token })
 }
 
 module.exports.getUsers = async (req, res) => {
   const users = await User.find();
   res.send(users)
+}
+
+module.exports.logOut = async (req, res) => {
+  res.clearCookie('token');
+  res.send({ message: 'Logged out successfully' });
 }
 
 

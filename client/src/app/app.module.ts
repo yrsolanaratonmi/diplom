@@ -6,6 +6,7 @@ import {
   TuiButtonModule,
   TuiTextfieldControllerModule,
   TuiThemeNightModule,
+  TuiErrorModule,
 } from '@taiga-ui/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
@@ -21,6 +22,7 @@ import {
   TuiInputComponent,
   TuiInputFilesModule,
   TuiInputModule,
+  TuiInputPasswordModule,
   TuiIslandModule,
   TuiMarkerIconModule,
   TuiTagModule,
@@ -31,6 +33,7 @@ import { NoteNewComponent } from './note-new/note-new.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NoteEditComponent } from './note-edit/note-edit.component';
 import { HttpClientModule } from '@angular/common/http';
+import { AuthComponent } from './auth/auth.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +43,7 @@ import { HttpClientModule } from '@angular/common/http';
     NoteViewComponent,
     NoteNewComponent,
     NoteEditComponent,
+    AuthComponent,
   ],
   imports: [
     HttpClientModule,
@@ -64,6 +68,8 @@ import { HttpClientModule } from '@angular/common/http';
     TuiThemeNightModule,
     TuiMarkerIconModule,
     TuiTagModule,
+    TuiInputPasswordModule,
+    TuiErrorModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
